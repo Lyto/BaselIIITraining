@@ -9,6 +9,7 @@ package Menus;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -34,21 +35,28 @@ public class Menu extends JPanel implements ActionListener{
         JLabel titre, login, password, footer;
         JTextField jtfLogin, jtfPassword;
         JButton jbtConnexion;
-    
-    
-     public Menu() {
         
+    @Override
+    public void paintComponent(Graphics g) {
+       
+        // Titre
+        g.setColor(new Color(15, 5, 107));
+        g.fillRoundRect(0, 0, 800, 100, 0, 10);
+
+    }
+    
+    private void setContents(){
         
         Font font = new Font("Arial", Font.BOLD, 34);
+        Font font1 = new Font("Arial", Font.PLAIN, 15);
         Font font2 = new Font("Arial", Font.BOLD, 18);
         
         LineBorder bord = new LineBorder(Color.black, 3);
-         
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        
-        titre = new JLabel("Basel III Training ");
+     
+        titre = new JLabel("Basel III Training                                  "
+                + "                     ");
         titre.setFont(font);
+        titre.setForeground(Color.white);
         
         login = new JLabel("Login : ");
         login.setFont(font2);
@@ -56,8 +64,9 @@ public class Menu extends JPanel implements ActionListener{
         password = new JLabel("Password : ");
         password.setFont(font2);
         
-        footer = new JLabel("Bonnelle Maximilien - Fillion Laura - Ly Pascal - Poli Alexane - Robineau Claire");
-        footer.setFont(font2);
+        footer = new JLabel("Bonnelle Maximilien   -   Fillion Laura   -   "
+                + "Ly Pascal   -   Poli Alexane   -   Robineau Claire");
+        footer.setFont(font1);
         
         jtfLogin = new JTextField(15);
         jtfLogin.setBorder(bord);
@@ -69,25 +78,31 @@ public class Menu extends JPanel implements ActionListener{
         jtfPassword.setPreferredSize(new Dimension(100, 30));
         jtfPassword.setHorizontalAlignment(JTextField.CENTER);
         
-        jbtConnexion = new JButton("Connexion");
+        jbtConnexion = new JButton("SE CONNECTER");
         jbtConnexion.setFont(font2);
         jbtConnexion.setBorder(bord);
         jbtConnexion.setPreferredSize(new Dimension(200, 50));
         jbtConnexion.addActionListener(this);
+    }
+    
+     public Menu() {
+         
+        setContents();
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
         
         gbc.gridx = gbc.gridy = 0;  // case (0,0)
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(15, 15, 10, 0);
+        gbc.insets = new Insets(0, 15, 100, 0);
         add(titre, gbc);
         
-        gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridx = gbc.gridy =1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-        //gbc.insets = new Insets(15, 0, 0, 0);
+        gbc.insets = new Insets(15, 70, 0, 30);
         add(login, gbc);
 
         gbc.gridy = 2;
@@ -102,8 +117,9 @@ public class Menu extends JPanel implements ActionListener{
         gbc.gridy = 2;
         add(jtfPassword, gbc);
         
-        gbc.gridx = 0;
+        gbc.gridx = 3;
         gbc.gridy = 3;
+        gbc.insets = new Insets(20, 0, 80, 0);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -111,18 +127,16 @@ public class Menu extends JPanel implements ActionListener{
         
         gbc.gridx = 0;
         gbc.gridy = 4;
+        gbc.insets = new Insets(70, 0, 0, 0);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(footer, gbc);
-        
      }
 
     @Override
-     public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent e) {
         JFrame fenetre = (JFrame) this.getTopLevelAncestor();
-
         if (e.getSource() == jbtConnexion) {
             try {
                 Fenetre fen = new Fenetre();
@@ -131,7 +145,6 @@ public class Menu extends JPanel implements ActionListener{
             } catch (SQLException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
-    
-}
-     }
+        }
+    }
 }
