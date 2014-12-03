@@ -6,6 +6,7 @@
 
 package Menus;
 
+import Connexion.Connexion;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
@@ -15,14 +16,14 @@ import javax.swing.JFrame;
  */
 public class Fenetre extends JFrame{
     
-        public Fenetre() throws SQLException {
+        public Fenetre(Connexion connex) throws SQLException {
         super("Basel III Training");
 
         setSize(800, 600);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setContentPane(new Menu());
+        setContentPane(new Menu(connex));
         setVisible(true);
 
     }

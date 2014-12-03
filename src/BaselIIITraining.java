@@ -1,4 +1,5 @@
 
+import Connexion.Connexion;
 import Menus.Fenetre;
 import java.sql.SQLException;
 
@@ -18,9 +19,11 @@ public class BaselIIITraining {
      * @param args the command line arguments
      * @throws java.sql.SQLException
      */
-    public static void main(String[] args) throws SQLException {
-        // TODO code application logic here
-        Fenetre mafenetre = new Fenetre();
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        
+        Connexion connex = new Connexion("basel_training", "root", "");
+        Fenetre mafenetre = new Fenetre(connex);
+        
     }
     
 }

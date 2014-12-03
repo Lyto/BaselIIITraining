@@ -6,6 +6,7 @@
 
 package Menus;
 
+import Connexion.Connexion;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,7 @@ import javax.swing.JTabbedPane;
  */
 public class Menu2 extends JPanel implements ActionListener {
     
-    public Menu2(){
+    public Menu2(Connexion connex){
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
         setLayout(new GridLayout(1, 1, 10, 10));
         JPanel TabbedPane1 = new Onglet1();

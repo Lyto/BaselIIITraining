@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Menus;
 
+import Connexion.Connexion;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -30,44 +30,53 @@ import javax.swing.border.LineBorder;
  *
  * @author Pascal
  */
-public class Menu extends JPanel implements ActionListener{
-    
-        JLabel titre, login, password, footer;
-        JTextField jtfLogin, jtfPassword;
-        JButton jbtConnexion;
-        
+public class Menu extends JPanel implements ActionListener {
+
+    JLabel titre, login, password, footer, fail;
+    JTextField jtfLogin, jtfPassword;
+    JButton jbtConnexion;
+    Connexion connex;
+
     @Override
     public void paintComponent(Graphics g) {
-       
+        
+        // Fond
+        g.setColor(new Color(245, 245, 245));
+        g.fillRect(0, 0, 800, 600);
+        
         // Titre
         g.setColor(new Color(15, 5, 107));
         g.fillRoundRect(0, 0, 800, 100, 0, 10);
 
     }
-    
-    private void setContents(){
-        
+
+    private void setContents() {
+
         Font font = new Font("Arial", Font.BOLD, 34);
         Font font1 = new Font("Arial", Font.PLAIN, 15);
         Font font2 = new Font("Arial", Font.BOLD, 18);
-        
+
         LineBorder bord = new LineBorder(Color.black, 3);
-     
+
         titre = new JLabel("Basel III Training                                  "
                 + "                     ");
         titre.setFont(font);
         titre.setForeground(Color.white);
-        
+
         login = new JLabel("Login : ");
         login.setFont(font2);
 
         password = new JLabel("Password : ");
         password.setFont(font2);
-        
+
         footer = new JLabel("Bonnelle Maximilien   -   Fillion Laura   -   "
                 + "Ly Pascal   -   Poli Alexane   -   Robineau Claire");
         footer.setFont(font1);
-        
+
+        fail = new JLabel("Erreur dans votre login ou dans votre mot de passe.");
+        fail.setForeground(new Color(245, 245, 245));
+        fail.setFont(font1);
+
         jtfLogin = new JTextField(15);
         jtfLogin.setBorder(bord);
         jtfLogin.setPreferredSize(new Dimension(100, 30));
@@ -77,28 +86,31 @@ public class Menu extends JPanel implements ActionListener{
         jtfPassword.setBorder(bord);
         jtfPassword.setPreferredSize(new Dimension(100, 30));
         jtfPassword.setHorizontalAlignment(JTextField.CENTER);
-        
+
         jbtConnexion = new JButton("SE CONNECTER");
         jbtConnexion.setFont(font2);
         jbtConnexion.setBorder(bord);
         jbtConnexion.setPreferredSize(new Dimension(200, 50));
         jbtConnexion.addActionListener(this);
+
     }
-    
-     public Menu() {
-         
+
+    public Menu(Connexion connexion) {
+
+        connex = connexion;
+
         setContents();
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
+
         gbc.gridx = gbc.gridy = 0;  // case (0,0)
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 15, 100, 0);
         add(titre, gbc);
-        
-        gbc.gridx = gbc.gridy =1;
+
+        gbc.gridx = gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -107,7 +119,7 @@ public class Menu extends JPanel implements ActionListener{
 
         gbc.gridy = 2;
         add(password, gbc);
-        
+
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -116,7 +128,7 @@ public class Menu extends JPanel implements ActionListener{
 
         gbc.gridy = 2;
         add(jtfPassword, gbc);
-        
+
         gbc.gridx = 3;
         gbc.gridy = 3;
         gbc.insets = new Insets(20, 0, 80, 0);
@@ -124,24 +136,42 @@ public class Menu extends JPanel implements ActionListener{
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(jbtConnexion, gbc);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.insets = new Insets(70, 0, 0, 0);
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(fail, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.insets = new Insets(60, 0, 0, 0);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(footer, gbc);
-     }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame fenetre = (JFrame) this.getTopLevelAncestor();
         if (e.getSource() == jbtConnexion) {
+
             try {
-                Fenetre fen = new Fenetre();
-                fen.setContentPane(new Menu2());
-                fenetre.dispose();
+
+                String login = jtfLogin.getText();
+                String password = jtfPassword.getText();
+
+                if (connex.authentification(login, password)) {
+                    Fenetre fen = new Fenetre(connex);
+                    fen.setContentPane(new Menu2(connex));
+                    fenetre.dispose();
+                } else {
+                    fail.setForeground(Color.RED);
+                }
+
             } catch (SQLException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
