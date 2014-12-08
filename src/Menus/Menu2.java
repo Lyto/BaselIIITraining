@@ -22,17 +22,19 @@ public class Menu2 extends JPanel implements ActionListener {
     public Menu2(Connexion connex){
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
         setLayout(new GridLayout(1, 1, 10, 10));
-        JPanel TabbedPane1 = new Onglet1();
-        JPanel TabbedPane2 = new Onglet2();
-        JPanel TabbedPane3 = new Onglet3();
-        JPanel TabbedPane4 = new Onglet4();
-        JPanel TabbedPane5 = new Onglet5();
+        JPanel panel1 = new Onglet1();
+        JPanel panel2 = new Onglet2();
+        JPanel panel3 = new Onglet3();
+        JPanel panel4 = new Onglet4();
+        JPanel panel5 = new Onglet5();
+        JPanel panel6 = new Onglet6();
         
-        tabbedPane.addTab("Profil", null, TabbedPane1, null);
-        tabbedPane.addTab("Bâle III", null, TabbedPane2, null);
-        tabbedPane.addTab("Risque de Crédit", null, TabbedPane3, null);
-        tabbedPane.addTab("Calcul CVA", null, TabbedPane4, null);  
-        tabbedPane.addTab("Simulation Monte-Carlo", null, TabbedPane5, null);
+        tabbedPane.addTab("Profil", null, panel1, null);
+        tabbedPane.addTab("Bâle III", null, panel2, null);
+        tabbedPane.addTab("Risque de Crédit", null, panel3, null);
+        tabbedPane.addTab("Calcul CVA", null, panel4, null);  
+        tabbedPane.addTab("Simulation Monte-Carlo", null, panel5, null);
+        tabbedPane.addTab("QCM", null, panel6,null);
         tabbedPane.setSelectedIndex(0);
         add(tabbedPane);
     }

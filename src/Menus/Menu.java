@@ -15,9 +15,13 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +36,7 @@ import javax.swing.border.LineBorder;
  */
 public class Menu extends JPanel implements ActionListener {
 
+    private BufferedImage image;
     JLabel titre, login, password, footer, fail;
     JTextField jtfLogin, jtfPassword;
     JButton jbtConnexion;
@@ -47,6 +52,13 @@ public class Menu extends JPanel implements ActionListener {
         // Titre
         g.setColor(new Color(15, 5, 107));
         g.fillRoundRect(0, 0, 800, 100, 0, 10);
+        
+         try { 
+            image = ImageIO.read(new File("logoPPE.jpg"));
+        } catch (IOException ex) {
+            Logger.getLogger(Onglet1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         g.drawImage(image, 120, 330, this);
 
     }
 
@@ -161,8 +173,10 @@ public class Menu extends JPanel implements ActionListener {
 
             try {
 
-                String login = jtfLogin.getText();
-                String password = jtfPassword.getText();
+                String login= "poli";
+                String password="alexane";
+                //String login = jtfLogin.getText();
+                //String password = jtfPassword.getText();
 
                 if (connex.authentification(login, password)) {
                     Fenetre fen = new Fenetre(connex);
