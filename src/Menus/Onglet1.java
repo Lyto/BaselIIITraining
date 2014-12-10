@@ -38,7 +38,7 @@ public class Onglet1 extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         //Photo utilisateur
         try { 
-            image = ImageIO.read(new File("LauraFillion.jpg"));
+            image = ImageIO.read(new File("profil.jpg"));
         } catch (IOException ex) {
             Logger.getLogger(Onglet1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,21 +68,21 @@ public class Onglet1 extends JPanel implements ActionListener {
         dateOfBirth.setFont(font);
         score= new JLabel("SCORE: ");
         score.setFont(font2);
-        qcm= new JLabel("Calcul du CVA");
+        qcm= new JLabel("  Calcul du CVA");
         qcm.setFont(font3);
         qcm.setBorder(BorderFactory.createLineBorder(Color.black));
         scoreQcm= new JLabel("12/20");
         scoreQcm.setFont(font3);
         scoreQcm.setHorizontalAlignment(JLabel.CENTER);
         scoreQcm.setBorder(BorderFactory.createLineBorder(Color.black));
-        qcm1= new JLabel("Risque de Crédit");
+        qcm1= new JLabel("  Risque de Crédit");
         qcm1.setFont(font3);
         qcm1.setBorder(BorderFactory.createLineBorder(Color.black));
         scoreQcm1= new JLabel("15/20");
         scoreQcm1.setFont(font3);
         scoreQcm1.setHorizontalAlignment(JLabel.CENTER);
         scoreQcm1.setBorder(BorderFactory.createLineBorder(Color.black));
-        qcm2= new JLabel("Bâle III");
+        qcm2= new JLabel("  Bâle III");
         qcm2.setFont(font3);
         qcm2.setBorder(BorderFactory.createLineBorder(Color.black));
         scoreQcm2= new JLabel("18/20");

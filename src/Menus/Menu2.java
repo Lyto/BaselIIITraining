@@ -27,7 +27,7 @@ public class Menu2 extends JPanel implements ActionListener {
         JPanel panel3 = new Onglet3();
         JPanel panel4 = new Onglet4();
         JPanel panel5 = new Onglet5();
-        JPanel panel6 = new Onglet6();
+        JPanel panel6 = new Onglet6(connex);
         
         tabbedPane.addTab("Profil", null, panel1, null);
         tabbedPane.addTab("Bâle III", null, panel2, null);

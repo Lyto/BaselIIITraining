@@ -39,7 +39,7 @@ public class Menu extends JPanel implements ActionListener {
     private BufferedImage image;
     JLabel titre, login, password, footer, fail;
     JTextField jtfLogin, jtfPassword;
-    JButton jbtConnexion;
+    JButton jbtConnexion, jbtInscription;
     Connexion connex;
 
     @Override
@@ -104,6 +104,12 @@ public class Menu extends JPanel implements ActionListener {
         jbtConnexion.setBorder(bord);
         jbtConnexion.setPreferredSize(new Dimension(200, 50));
         jbtConnexion.addActionListener(this);
+        
+        jbtInscription = new JButton("S'INSCRIRE");
+        jbtInscription.setFont(font2);
+        jbtInscription.setBorder(bord);
+        jbtInscription.setPreferredSize(new Dimension(200, 50));
+        jbtInscription.addActionListener(this);
 
     }
 
@@ -143,19 +149,27 @@ public class Menu extends JPanel implements ActionListener {
 
         gbc.gridx = 3;
         gbc.gridy = 3;
-        gbc.insets = new Insets(20, 0, 80, 0);
+        gbc.insets = new Insets(20, 0, 20, 0);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         add(jbtConnexion, gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 4;
+        gbc.insets = new Insets(0, 0, 60, 0);
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(jbtInscription, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridheight = 1;
         gbc.anchor = GridBagConstraints.CENTER;
-        add(fail, gbc);
+        //add(fail, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 5;
@@ -168,13 +182,15 @@ public class Menu extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         JFrame fenetre = (JFrame) this.getTopLevelAncestor();
+        
         if (e.getSource() == jbtConnexion) {
 
             try {
 
-                String login= "poli";
-                String password="alexane";
+                String login = "YuuKii";
+                String password = "chocolat01";
                 //String login = jtfLogin.getText();
                 //String password = jtfPassword.getText();
 
